@@ -93,7 +93,7 @@ def Read10X(
     with File(path / count_file, mode="r") as f:
         attrs = dict(f.attrs)
     if library_id is None:
-        library_id = str(attrs.pop("library_ids")[0], "utf-8")
+        #library_id = str(attrs.pop("library_ids")[0], "utf-8")
 
     adata.uns["spatial"][library_id] = dict()
 
@@ -113,14 +113,14 @@ def Read10X(
 
         # check if files exists, continue if images are missing
         for f in files.values():
-            if not f.exists():
-                if any(x in str(f) for x in ["hires_image", "lowres_image"]):
-                    logg.warning(
-                        f"You seem to be missing an image file.\n"
-                        f"Could not find '{f}'."
-                    )
-                else:
-                    raise OSError(f"Could not find '{f}'")
+            #if not f.exists():
+            #    if any(x in str(f) for x in ["hires_image", "lowres_image"]):
+            #        logg.warning(
+            #            f"You seem to be missing an image file.\n"
+            #            f"Could not find '{f}'."
+            #        )
+            #    else:
+            #        raise OSError(f"Could not find '{f}'")
 
         adata.uns["spatial"][library_id]["images"] = dict()
         for res in ["hires", "lowres"]:
